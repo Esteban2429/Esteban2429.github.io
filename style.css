@@ -1,0 +1,528 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sansita+Swashed&display=swap');
+body{
+    font-family: Poppins;
+    background-color: #000;
+    color: #eee;
+    margin: 0;
+    font-size: 12px;
+}
+/* Estilo para pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+    body {
+      font-size: 14px;
+      padding: 10px;
+    }
+  }
+a{
+    text-decoration: none;
+    color: #eee;
+}
+
+header{
+    width: 1140px;
+    max-width: 80%;
+    margin: auto;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 100;
+}
+header a{
+    margin-right: 40px;
+}
+
+.carousel{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    margin-top: -50px;
+    position: relative;
+}
+.carousel .list .item{
+    position: absolute;
+    inset: 0 0 0 0;
+}
+.carousel .list .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.carousel .list .item .content{
+    position: absolute;
+    top: 20%;
+    width: 1140px;
+    max-width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-right: 30%;
+    box-sizing: border-box;
+    color: #fff;
+    text-shadow: 0 5px 10px #0004;
+}
+.carousel .list .item .content .author{
+    font-weight: bold;
+    letter-spacing: 10px;
+}
+.carousel .list .item .content .title,
+.carousel .list .item .content .topic{
+    font-weight: bold;
+    font-size: 5em;
+    list-style: 1.3em;
+}
+.carousel .list .item .content .topic{
+    color: #f1683a;
+}
+.carousel .list .item .content .buttons{
+    display: grid;
+    grid-template-columns: repeat(2, 130px);
+    grid-template-rows: 40px;
+    gap: 5px;
+    margin-top: 20px;
+}
+.carousel .list .item .content button{
+    border: none;
+    background-color: #eee;
+    letter-spacing: 3px;
+    font-family: Poppins;
+    font-weight: 500;
+}
+.carousel .list .item .content button:nth-child(2){
+    background-color: transparent;
+    color: #eee;
+    border: 1px solid #eee;
+}
+
+.thumbnail{
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    width: max-content;
+    z-index: 100;
+    display: flex;
+    gap: 20px
+}
+.thumbnail .item{
+    width: 150px;
+    height: 220px;
+    flex-shrink: 0;
+    position: relative;
+}
+.thumbnail .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+.thumbnail .item .content{
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+}
+.thumbnail .item .content .title{
+    font-weight: bold;
+}
+
+.arrows{
+    position: absolute;
+    top: 80%;
+    right: 52%;
+    width: 300px;
+    max-width: 30%;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.arrows button{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #eee4;
+    border: none;
+    font-family: monospace;
+    color: #fff;
+    font-weight: bold;
+    font-size: large;
+    transition: .5s;
+    z-index: 100;
+}
+.arrows button:hover{
+    background-color: #eee;
+    color: #555;
+}
+.carousel .list .item:nth-child(1){
+    z-index: 1;
+}
+.carousel .list .item:nth-child(1) .author,
+.carousel .list .item:nth-child(1) .title,
+.carousel .list .item:nth-child(1) .topic,
+.carousel .list .item:nth-child(1) .des,
+.carousel .list .item:nth-child(1) .buttons{
+    transform: translateY(50px);
+    filter: blur(20px);
+    opacity: 0;
+    animation: showContent 0.5s 1s linear 1 forwards;
+}
+@keyframes showContent {
+    to{
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0);
+    } 
+}
+.carousel .list .item:nth-child(1) .title{
+    animation-delay: 1.2s;
+}
+.carousel .list .item:nth-child(1) .topic{
+    animation-delay: 1.4s;
+}
+.carousel .list .item:nth-child(1) .des{
+    animation-delay: 1.6s;
+}
+.carousel .list .item:nth-child(1) .buttons{
+    animation-delay: 1.8s;
+}
+
+.carousel.next .list .item:nth-child(1) img{
+    width: 150px;
+    height: 220px;
+    position: absolute;
+    left: 50%;
+    bottom: 50px;
+    border-radius: 20px;
+    animation: showImage 0.5s linear 1 forwards;
+}
+@keyframes showImage {
+    from {
+        width: 150px;
+        height: 220px;
+        left: 50%;
+        bottom: 50px;
+        border-radius: 20px;
+        transform: translate(-50%, 0);
+    }
+    to {
+        width: 100%;
+        height: 100%;
+        left: 0;
+        bottom: 0;
+        border-radius: 0;
+        transform: translate(0, 0);
+    }
+}
+.carousel.next .thumbnail .item:nth-child(1){
+    width: 0;
+    overflow: hidden;
+    animation: showThumbnail .5s linear 1 forwards;
+}
+@keyframes showThumbnail{
+    to{
+        width: 150px;
+    }
+}
+.carousel.next .thumbnail{
+    transform: translateX(150px);
+    animation: transformThumbnail .5s linear 1 forwards;
+}
+@keyframes transformThumbnail{
+    to{
+        transform: translateX(0);
+    }
+}
+
+.carousel.prev .list .item:nth-child(2){
+    z-index: 2;
+}
+.carousel.prev .list .item:nth-child(2) img{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    animation: outImage 0.5s linear 1 forwards;
+}
+@keyframes outImage {
+    from {
+        width: 100%;
+        height: 100%;
+        left: 0;
+        bottom: 0;
+        border-radius: 0;
+        transform: translate(0, 0);
+    }
+    to {
+        width: 150px;
+        height: 220px;
+        border-radius: 20px;
+        left: 50%;
+        bottom: 50px;
+        transform: translate(-50%, 0);
+    }
+}
+.carousel.prev .thumbnail.item:nth-child(1){
+    width: 0;
+    overflow: hidden;
+    opacity: 0;
+    animation: showThumbnail 0.5s linear 1 forwards;
+}
+.carousel.prev .list .item:nth-child(2) .author,
+.carousel.prev .list .item:nth-child(2) .title,
+.carousel.prev .list .item:nth-child(2) .topic,
+.carousel.prev .list .item:nth-child(2) .des,
+.carousel.prev .list .item:nth-child(2) .buttons{
+    animation: contentOut 1.5s linear forwards;
+}
+@keyframes contentOut{
+    to{
+        transform: translateY(150px);
+        filter: blur(20px);
+        opacity: 0;
+    }
+}
+.carousel.next .arrows button,
+.carousel.prev .arrows button{
+    pointer-events: none;
+}
+
+.time{
+    width: 0%;
+    height: 5px;
+    background-color: #f1683a;
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
+}
+.carousel.next .time,
+.carousel.prev .time{
+    width: 100%;
+    animation: timeRunning 2s linear 1 forwards;
+}
+@keyframes timeRunning{
+    to{
+        width: 0;
+    }
+}
+@media screen and (max-width: 678px) {
+    .carousel .list .item .content {
+        padding-right: 0;
+    }
+    .carousel .list .item .content .title {
+        font-size: 30px;
+    }
+}
+
+/* Posicionar el contenedor de redes sociales en la parte superior derecha */
+.card {
+    position: fixed; /* Fija el contenedor en la posición */
+    top: 10px; /* Margen desde la parte superior */
+    right: 10px; /* Margen desde la parte derecha */
+    display: flex; /* Alinear los elementos en línea */
+    gap: 10px; /* Espaciado entre los íconos */
+    z-index: 1000; /* Asegura que esté encima de otros elementos */
+    padding: 25px 25px;
+    gap: 20px;
+    z-index: 1000;
+  }
+  
+  /* Estilo para los íconos de redes sociales */
+  .socialContainer {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff; /* Fondo blanco */
+    border-radius: 50%; /* Forma circular */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .socialContainer:hover {
+    transform: scale(1.1); /* Efecto al pasar el cursor */
+    background-color: #f0f0f0; /* Fondo más claro al pasar el cursor */
+  }
+  
+  /* Tamaño de los íconos SVG */
+  .socialSvg {
+    width: 20px;
+    height: 20px;
+    fill: #333; /* Color del ícono */
+  }
+  
+  .containerOne .socialSvg {
+    fill: #E1306C; /* Instagram color */
+  }
+   
+  .containerTwo .socialSvg {
+    fill: #1DA1F2; /* Twitter color */
+  }
+   
+  .containerThree .socialSvg {
+    fill: #0077B5; /* LinkedIn color */
+  }
+   
+  .containerFour .socialSvg {
+    fill: #25D366; /* WhatsApp color */
+  }
+
+  /* Instagram */
+.containerOne {
+  background-color: transparent; /* Fondo transparente inicialmente */
+}
+.containerOne:hover {
+  background-color: #d62976; /* Color de fondo al pasar el mouse */
+  transition-duration: 0.3s;
+  transform: scale(1.5);
+  border-radius: 15px;
+}
+.containerOne .socialSvg path {
+  fill: #000; /* Negro inicialmente */
+}
+.containerOne:hover .socialSvg path {
+  fill: #fff; /* Blanco al pasar el mouse */
+}
+
+/* Twitter */
+.containerTwo {
+  background-color: transparent;
+}
+.containerTwo:hover {
+  background-color: #00acee;
+  transition-duration: 0.3s;
+  transform: scale(1.5);
+  border-radius: 15px;
+}
+.containerTwo .socialSvg path {
+  fill: #000;
+}
+.containerTwo:hover .socialSvg path {
+  fill: #fff;
+}
+
+/* LinkedIn */
+.containerThree {
+  background-color: transparent;
+}
+.containerThree:hover {
+  background-color: #0072b1;
+  transition-duration: 0.3s;
+  transform: scale(1.5);
+  border-radius: 15px;
+}
+.containerThree .socialSvg path {
+  fill: #000;
+}
+.containerThree:hover .socialSvg path {
+  fill: #fff;
+}
+
+/* WhatsApp */
+.containerFour {
+  background-color: transparent;
+}
+.containerFour:hover {
+  background-color: #25d366;
+  transition-duration: 0.3s;
+  transform: scale(1.5);
+  border-radius: 15px;
+}
+.containerFour .socialSvg path {
+  fill: #000;
+}
+.containerFour:hover .socialSvg path {
+  fill: #fff;
+}
+
+/* Efecto activo */
+.socialContainer:active {
+  transform: scale(0.9);
+  transition-duration: 0.3s;
+}
+
+/* Estilo inicial del ícono */
+.socialSvg {
+  width: 17px;
+}
+
+.socialContainer:hover .socialSvg {
+  animation: slide-in-top 0.3s both;
+}
+
+@keyframes slide-in-top {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+
+.skills-bar {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.skills-bar strong {
+    display: block;
+    margin-bottom: 2px;
+    color: #fff9f9;
+}
+
+.bar {
+    width: 50%; /* La barra tiene un ancho total disponible */
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 15px;
+    position: relative;
+}
+
+.progress {
+    height: 100%;
+    background-color: #4CAF50;
+    width: 0; /* Inicialmente sin progreso */
+    border-radius: 5px;
+    animation-delay: 2s; /* Ajusta este valor según cuándo quieres que comience */
+}
+
+/* Animación para llenar la barra de progreso */
+@keyframes fillProgress {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Barra 1: 70% */
+.bar:nth-child(1) .progress {
+    width: 70%; /* 70% de progreso */
+    animation-delay: 2s;
+}
+
+/* Barra 2: 50% */
+.bar:nth-child(2) .progress {
+    width: 50%; /* 50% de progreso */
+    animation-delay: 2.5s;
+}
+
+/* Barra 3: 90% */
+.bar:nth-child(3) .progress {
+    width: 90%; /* 90% de progreso */
+    animation-delay: 3s;
+}
+
+/* Asegúrate de que las barras se sincronicen con la animación del texto */
+.carousel .list .item:nth-child(1) .skills-bar {
+    opacity: 0;
+    animation: showBar 0.5s linear 1s forwards; /* Mostrar la barra con un retraso */
+}
+
+@keyframes showBar {
+    to {
+        opacity: 1;
+    }
+}
